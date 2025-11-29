@@ -2,6 +2,8 @@ import json
 import requests
 import logging
 import os
+from typing import Iterable
+
 
 class CustomRequester:
     """
@@ -12,9 +14,10 @@ class CustomRequester:
         "Accept": "application/json"
     }
 
-    def __init__(self, session, base_url):
+    def __init__(self, session: requests.Session, base_url: str) -> None:
         """
         Инициализация кастомного реквестера.
+
         :param session: Объект requests.Session.
         :param base_url: Базовый URL API.
         """
@@ -24,35 +27,66 @@ class CustomRequester:
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(logging.INFO)
 
-    def send_request(self, method, endpoint, data=None, expected_status=200, need_logging=True, params=None):
+    def send_request(
+        self,
+        method: str,
+        endpoint: str,
+        data: dict | None = None,
+        expected_status: int | Iterable[int] = 200,
+        need_logging: bool = True,
+        params: dict | None = None
+    ) -> requests.Response:
         """
-        Универсальный метод для отправки запросов.
+        Универсальный метод для отправки HTTP-запросов.
+
         :param method: HTTP метод (GET, POST, PUT, DELETE и т.д.).
-        :param endpoint: Эндпоинт (например, "/login").
+        :param endpoint: Эндпойнт (например, "/login").
         :param data: Тело запроса (JSON-данные).
-        :param expected_status: Ожидаемый статус-код (по умолчанию 200).
+        :param params: Параметры URL (query-параметры).
+        :param expected_status: допустимый код или список кодов.
         :param need_logging: Флаг для логирования (по умолчанию True).
         :return: Объект ответа requests.Response.
         """
-        url = f"{self.base_url}{endpoint}"
-        response = self.session.request(method, url, json=data, params=params, headers=self.headers)
+        response = self.session.request(
+            method,
+            f"{self.base_url}{endpoint}",
+            json=data,
+            params=params,
+            headers=self.headers
+        )
         if need_logging:
             self.log_request_and_response(response)
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}. Expected: {expected_status}")
+
+        if isinstance(expected_status, int):
+            allowed_statuses = {expected_status}
+        else:
+            allowed_statuses = set(expected_status)
+
+        if response.status_code not in allowed_statuses:
+            raise ValueError(
+                f"Unexpected status code:{response.status_code}."
+                f"Expected: {allowed_statuses}"
+            )
+
         return response
 
 
-    def _update_session_headers(self, **kwargs):
+    def _update_session_headers(self, **kwargs: str) -> None:
         """
-        Обновление заголовков сессии.
-        :param kwargs: Дополнительные заголовки.
+        Обновляет заголовки сессии.
+
+        :param kwargs: заголовки в формате ключ=значение.
         """
         self.headers.update(kwargs)  # Обновляем базовые заголовки
         self.session.headers.update(kwargs)  # Обновляем заголовки в текущей сессии
 
 
-    def log_request_and_response(self, response):
+    def log_request_and_response(self, response: requests.Response) -> None:
+        """
+        Логирует HTTP-запрос и ответ.
+
+        :param response: Объект ответа requests.Response.
+        """
         try:
             request = response.request
             GREEN = '\033[32m'

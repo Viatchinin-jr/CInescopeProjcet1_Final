@@ -1,45 +1,60 @@
+import requests
+
 from constants import MOVIES_ENDPOINT, MOVIES_ID_ENDPOINT
 from custom_requester.custom_requester import CustomRequester
-from API.auth_api import AuthAPI
-from utils.data_generator import DataGenerator
+
 
 class MoviesAPI(CustomRequester):
     """
-    Класс для работы с MOVIES api
+    Клиент для работы с сервисом Movies.
+    Предоставляет методы для управления сущностями фильмов через REST API.
     """
-    def __init__(self, session):
+    def __init__(self, session: requests.Session):
+        """
+        Инициализирует экземпляр MoviesAPI.
+
+        :param session: активная HTTP-сессия requests.Session, содержащая базовый URL и настройки авторизации.
+        """
         super().__init__(session=session, base_url=session.api_base_url) #тут берем за base_url - url апишки movies
+
 
     def get_list_movies(self, params: dict | None = None, expected_status: int = 200):
         """
-        Это на получение гетом списка всех фильмов
-        :param params: словарь фильтров, пока не нужен вроде хз
-        :param expected_status: 200
-        :return: объект request.Response
+        Получает список фильмов.
+
+        :param params: дополнительные параметры фильтрации запроса.
+        :param expected_status: ожидаемый HTTP-код ответа.
+        :return: объект requests.Response с данными ответа API.
         """
         return self.send_request("GET", endpoint=MOVIES_ENDPOINT, params=params, expected_status=expected_status)
 
     def create_movie(self, movie_data: dict,  expected_status: int = 201):
         """
-        Создание фильма
-        :param params:
-        :param expected_status:
-        :return:
+        Создает новый фильм.
+
+        :param movie_data: данные нового фильма в формате словаря.
+        :param expected_status: ожидаемый HTTP-код ответа, по умолчанию 201.
+        :return: объект requests.Response с данными ответа API.
         """
         return self.send_request("POST", endpoint=MOVIES_ENDPOINT, data=movie_data, expected_status=expected_status)
 
-    def get_movie_by_id(self, movie_id, expected_status: int = 200):
+    def get_movie_by_id(self, movie_id: int, expected_status: int = 200):
         """
-        На получение информации о фильме по ID
+        Возвращает данные фильма по его идентификатору.
 
+        :param movie_id: уникальный идентификатор фильма.
+        :param expected_status: ожидаемый HTTP-код ответа.
+        :return: объект requests.Response с данными фильма.
         """
         return self.send_request("GET", endpoint=MOVIES_ID_ENDPOINT.format(id=movie_id), expected_status=expected_status)
 
-    def delete_movie(self, movie_id, expected_status=204):
+    def delete_movie(self, movie_id: int, expected_status: int = 204):
         """
-        Удаляет фильм по ID
-        :param movie_id: ID фильма
-        :param expected_status: ожидаемый статус (по умолчанию 204)
+        Удаляет фильм по его идентификатору.
+
+        :param movie_id: уникальный идентификатор фильма.
+        :param expected_status: ожидаемый HTTP-код ответа, по умолчанию 204.
+        :return: объект requests.Response.
         """
         return self.send_request(
             "DELETE",
@@ -47,5 +62,13 @@ class MoviesAPI(CustomRequester):
             expected_status=expected_status
         )
 
-    def patch_movie(self, movie_id: dict, patch_data: dict, expected_status=200):
+    def patch_movie(self, movie_id: int, patch_data: dict, expected_status: int = 200):
+        """
+        Частично обновляет данные фильма.
+
+        :param movie_id: уникальный идентификатор фильма.
+        :param patch_data: словарь с изменяемыми полями фильма.
+        :param expected_status: ожидаемый HTTP-код ответа.
+        :return: объект requests.Response с данными обновленного фильма.
+        """
         return self.send_request("PATCH", endpoint=MOVIES_ID_ENDPOINT.format(id=movie_id), data=patch_data, expected_status=expected_status)

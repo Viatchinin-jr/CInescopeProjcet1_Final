@@ -1,9 +1,3 @@
-import pytest
-import requests
-from constants import REGISTER_ENDPOINT, LOGIN_ENDPOINT
-from custom_requester.custom_requester import CustomRequester
-from API.api_manager import ApiManager
-from API.auth_api import AuthAPI
 
 
 class TestAuthAPI:

@@ -1,4 +1,3 @@
-from faker import Faker
 import pytest
 import requests
 from API.api_manager import ApiManager
@@ -6,9 +5,6 @@ from constants import BASE_URL, REGISTER_ENDPOINT
 from custom_requester.custom_requester import CustomRequester
 from utils.data_generator import DataGenerator
 
-
-
-faker = Faker()
 
 @pytest.fixture(scope="session")
 def session():
@@ -26,7 +22,16 @@ def api_manager(session):
     """
     return ApiManager(session)
 
-@pytest.fixture(scope="session")
+@pytest.fixture
+def unauthorized_api_manager():
+    """
+    ApiManager с новой HTTP-сессией без авторизационных заголовков.
+    Используется для негативных тестов, где важно отсутствие токена
+    """
+    http_session = requests.Session()
+    return ApiManager(http_session)
+
+@pytest.fixture
 def test_user():
     """
     Генерация случайного пользователя для тестов.
@@ -43,7 +48,7 @@ def test_user():
         "roles": ["USER"]
     }
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def registered_user(requester, test_user):
     """
     Фикстура для регистрации и получения данных зарегистрированного пользователя.
