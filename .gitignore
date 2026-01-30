@@ -1,0 +1,14 @@
+.idea/*
+.vscode/*
+__pycache__/*
+*.pyc
+.venv/*
+venv/*
+.DS_Store
+*.db
+*.xlsx
+*.log
+*.csv
+*.env
+.env
+README.md
