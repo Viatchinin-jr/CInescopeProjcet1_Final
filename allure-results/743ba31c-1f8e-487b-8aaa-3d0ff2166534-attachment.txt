@@ -1,0 +1,25 @@
+2026-03-10 17:40:20 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestPatchNegative::test_patch_with_invalid_data_400 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:40:20 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestPatchNegative::test_patch_with_invalid_data_400RESET
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru//movies' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDU0LCJleHAiOjE3NzMxNDgyNTR9.EkGpzTvi84KKFhbO0MYltK9u7nPyGqCIiuIjK2kJeJI' \
+-H 'Content-Length: 158' \
+-d '{"name": "Us way", "price": 184, "description": "Plant.", "imageUrl": "https://image.url", "location": "SPB", "published": true, "rating": 62.4, "genreId": 1}' 
+
+2026-03-10 17:40:20 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestPatchNegative::test_patch_with_invalid_data_400RESET
+curl -X PATCH 'https://api.dev-cinescope.coconutqa.ru//movies/17709' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDU0LCJleHAiOjE3NzMxNDgyNTR9.EkGpzTvi84KKFhbO0MYltK9u7nPyGqCIiuIjK2kJeJI' \
+-H 'Content-Length: 17' \
+-d '{"price": "free"}' 
+
+2026-03-10 17:40:20 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["price must not be less than 1","Поле price должно быть числом"],"error":"Bad Request","statusCode":400}RESET

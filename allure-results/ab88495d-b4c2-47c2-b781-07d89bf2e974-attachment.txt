@@ -1,0 +1,32 @@
+2026-03-10 17:40:44 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_common_user_cannot_get_all_users_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:40:44 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_common_user_cannot_get_all_users_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDc4LCJleHAiOjE3NzMxNDgyNzh9.Y2doIUntN5JQDWz_yfkjiT2NwXESjbUCNevrbX5p3Os' \
+-H 'Cookie: refresh_token=988337f8-ef94-42ab-ab51-5f77d2f5eba0' \
+-H 'Content-Length: 154' \
+-d '{"email": "keklc6tzrfd@gmail.com", "fullName": "Kristopher Miller", "password": "vQ?veAzve9A7TPEBx", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:44 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_common_user_cannot_get_all_users_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 67' \
+-d '{"email": "keklc6tzrfd@gmail.com", "password": "vQ?veAzve9A7TPEBx"}'
+2026-03-10 17:40:44 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_common_user_cannot_get_all_users_403RESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/user?pageSize=10&page=1&createdAt=asc' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljNWIyY2ViLTM1NzktNGJiYS1hYTliLTVlODRjNTg5NmM1OSIsImVtYWlsIjoia2VrbGM2dHpyZmRAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDc5LCJleHAiOjE3NzMxNDgyNzl9.3ROYNdaIlJ1OW5KiKnEBbu1t9L2s1hEnsY1Qr27ga7U' \
+-H 'Cookie: refresh_token=480ddb75-df5e-4cf4-a8ea-d7b59a1a6271' \
+
+2026-03-10 17:40:44 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED403RESET
+DATA: RED{"message":"Forbidden resource","error":"Forbidden","statusCode":403}RESET

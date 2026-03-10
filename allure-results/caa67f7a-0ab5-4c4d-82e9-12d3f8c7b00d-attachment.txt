@@ -1,0 +1,11 @@
+2026-03-10 17:40:32 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_create_unauthorized_401RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+-H 'Content-Length: 142' \
+-d '{"email": "kekopuzo7ia@gmail.com", "fullName": "Emily Wilson", "password": "iG&vQm9KSR", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:32 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED401RESET
+DATA: RED{"message":"Unauthorized","statusCode":401}RESET

@@ -1,0 +1,19 @@
+2026-03-10 17:39:49 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_by_id (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:39:50 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_by_idRESET
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru//movies' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDI0LCJleHAiOjE3NzMxNDgyMjR9.5BQMfE14rQD4Jn_0OBGCyosOqjHPGWXUXWuGcOb3wHo' \
+-H 'Content-Length: 162' \
+-d '{"name": "Life house", "price": 127, "description": "Clear.", "imageUrl": "https://image.url", "location": "SPB", "published": true, "rating": 16.4, "genreId": 1}' 
+
+2026-03-10 17:39:50 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_by_idRESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies/17703' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDI0LCJleHAiOjE3NzMxNDgyMjR9.5BQMfE14rQD4Jn_0OBGCyosOqjHPGWXUXWuGcOb3wHo' \

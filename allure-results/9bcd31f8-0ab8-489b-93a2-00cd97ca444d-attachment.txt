@@ -1,0 +1,29 @@
+2026-03-10 17:40:23 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthAPI::test_logout (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/register' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 138' \
+-d '{"email": "kekmkobbq4o@gmail.com", "fullName": "Taylor Page", "password": "SU&dX3x8k3", "passwordRepeat": "SU&dX3x8k3", "roles": ["USER"]}'
+2026-03-10 17:40:23 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthAPI::test_logoutRESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=2dd19ba6-d757-4af0-998e-b7bffcd3d5dd' \
+-H 'Content-Length: 60' \
+-d '{"email": "kekmkobbq4o@gmail.com", "password": "SU&dX3x8k3"}' 
+
+2026-03-10 17:40:23 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthAPI::test_logoutRESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/logout' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=dd924869-54b1-457c-bb66-bdca983ad840' \
+
+2026-03-10 17:40:23 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthAPI::test_logoutRESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/refresh-tokens' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+
+2026-03-10 17:40:23 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED401RESET
+DATA: RED{"message":"Пользователь не авторизован","error":"Unauthorized","statusCode":401}RESET

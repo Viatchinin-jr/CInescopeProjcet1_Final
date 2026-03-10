@@ -1,0 +1,41 @@
+2026-03-10 17:40:41 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_get_user_forbidden_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:40:41 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_get_user_forbidden_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDc1LCJleHAiOjE3NzMxNDgyNzV9.pIuWeZVkqkdefGotbq2xbxYTDUhaJufawOTr-wU8taU' \
+-H 'Cookie: refresh_token=55ed01e1-db18-4877-b423-44e6cd98c946' \
+-H 'Content-Length: 146' \
+-d '{"email": "kekex7s0j3q@gmail.com", "fullName": "Evan Gardner", "password": "#to9vJ$cT?0gUc", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:42 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_get_user_forbidden_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 64' \
+-d '{"email": "kekex7s0j3q@gmail.com", "password": "#to9vJ$cT?0gUc"}'
+2026-03-10 17:40:42 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_get_user_forbidden_403RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDc1LCJleHAiOjE3NzMxNDgyNzV9.pIuWeZVkqkdefGotbq2xbxYTDUhaJufawOTr-wU8taU' \
+-H 'Cookie: refresh_token=55ed01e1-db18-4877-b423-44e6cd98c946' \
+-H 'Content-Length: 156' \
+-d '{"email": "foribdden_keknjoizjux@gmail.com", "fullName": "Evan Gardner", "password": "#to9vJ$cT?0gUc", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:42 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_get_user_forbidden_403RESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/user/992a5bc8-0743-40c1-be61-4988b5cdfe9e' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwMDk0OWY0LTFiNjUtNDM5Zi1iZmNlLTYyOWViMTVhZmY0YSIsImVtYWlsIjoia2VrZXg3czBqM3FAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDc2LCJleHAiOjE3NzMxNDgyNzZ9.5OmdWHTxcaaDmHk394Eysxu-Hmz5ZYGfzgWi02B_3hg' \
+-H 'Cookie: refresh_token=3cdf8bc3-8d36-4739-9088-4ac294d39786' \
+
+2026-03-10 17:40:42 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED403RESET
+DATA: RED{"message":"Forbidden resource","error":"Forbidden","statusCode":403}RESET

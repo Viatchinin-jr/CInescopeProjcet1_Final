@@ -1,0 +1,15 @@
+2026-03-10 17:40:15 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetByIdNegative::test_get_movie_404 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:40:16 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetByIdNegative::test_get_movie_404RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies/14888841' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDUwLCJleHAiOjE3NzMxNDgyNTB9.o7bd9_Qe3CoXAkcjfjBL9DxC_mFj8DKH-_nDOniveAE' \
+
+2026-03-10 17:40:16 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED404RESET
+DATA: RED{"message":"Фильм не найден","error":"Not Found","statusCode":404}RESET

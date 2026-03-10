@@ -1,0 +1,11 @@
+2026-03-10 17:40:24 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthNegative::test_login_bad_wrong_data_401RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+-H 'Content-Length: 57' \
+-d '{"email": "test1@email.com", "password": "12345678Aabra"}' 
+
+2026-03-10 17:40:24 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED401RESET
+DATA: RED{"message":"Неверный логин или пароль","error":"Unauthorized","statusCode":401}RESET

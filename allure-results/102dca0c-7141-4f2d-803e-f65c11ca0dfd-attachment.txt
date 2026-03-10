@@ -1,0 +1,31 @@
+2026-03-10 17:39:57 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[minPrice as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:39:57 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[minPrice as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDMyLCJleHAiOjE3NzMxNDgyMzJ9.q25ifQPcvd6CH1lwt9FmOj6lvmqhERjU5OsOY8uKYgU' \
+-H 'Cookie: refresh_token=894814f5-9e62-4d6f-8c2f-7d523d2a99d6' \
+-H 'Content-Length: 145' \
+-d '{"email": "kekdqdaxwve@gmail.com", "fullName": "Katie Barajas", "password": "KdTbJGmoM1k5", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:39:58 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[minPrice as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 62' \
+-d '{"email": "kekdqdaxwve@gmail.com", "password": "KdTbJGmoM1k5"}'
+2026-03-10 17:39:58 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[minPrice as string]RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?minPrice=abc' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFjYjk2NjBjLTBhMDItNDE0NC1iM2Q4LTkxZThkZTMzNzQxMSIsImVtYWlsIjoia2VrZHFkYXh3dmVAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDMzLCJleHAiOjE3NzMxNDgyMzN9.iLkcZnqCU1gaAtj2fcoOXeq1SbZwcs6oNHIJMm0RD5Y' \
+
+2026-03-10 17:39:58 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["Поле minPrice имеет минимальную величину 0","Поле minPrice должно быть числом"],"error":"Bad Request","statusCode":400}RESET

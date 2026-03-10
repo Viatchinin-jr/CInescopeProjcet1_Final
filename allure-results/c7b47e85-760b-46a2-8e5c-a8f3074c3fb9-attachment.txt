@@ -1,0 +1,11 @@
+2026-03-10 17:40:24 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthNegative::test_register_user_wrong_data_400RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/register' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+-H 'Content-Length: 119' \
+-d '{"email": "it-is-not-a-valid-email", "fullName": "Nikita Test", "password": "qwerty123", "passwordRepeat": "qwerty123"}' 
+
+2026-03-10 17:40:24 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["Некорректный email"],"error":"Bad Request","statusCode":400}RESET

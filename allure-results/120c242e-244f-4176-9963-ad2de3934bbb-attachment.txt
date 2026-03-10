@@ -1,0 +1,31 @@
+2026-03-10 17:39:55 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[page as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:39:56 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[page as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDMwLCJleHAiOjE3NzMxNDgyMzB9.ojrR2Ucnh0u23aICB2c92Kje9IDBRff6TqvHPKu6QtQ' \
+-H 'Cookie: refresh_token=64a1fdb7-37b7-41c9-a4fe-108b4727ef2c' \
+-H 'Content-Length: 149' \
+-d '{"email": "kekvv3tjbzr@gmail.com", "fullName": "Edward Butler", "password": "IdSbfYpw3G%7&0xj", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:39:56 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[page as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 66' \
+-d '{"email": "kekvv3tjbzr@gmail.com", "password": "IdSbfYpw3G%7&0xj"}'
+2026-03-10 17:39:57 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[page as string]RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?page=abc' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU5M2I4YjUwLTY5YzMtNDk5MS1iYTMzLTI0Njk5MDg5NzZmZiIsImVtYWlsIjoia2VrdnYzdGpienJAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDMxLCJleHAiOjE3NzMxNDgyMzF9.U1_Y3_EQjc6Plzf48yVchZ3mPkvpj0UA_OVQpIjJqPQ' \
+
+2026-03-10 17:39:57 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["Поле page имеет минимальную величину 1","Поле page должно быть целым числом","Поле page должно быть числом"],"error":"Bad Request","statusCode":400}RESET

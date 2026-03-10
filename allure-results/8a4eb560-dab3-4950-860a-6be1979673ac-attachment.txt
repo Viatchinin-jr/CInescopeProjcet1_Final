@@ -1,0 +1,29 @@
+2026-03-10 17:40:28 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_delete_by_super_admin (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:40:28 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_delete_by_super_adminRESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDYyLCJleHAiOjE3NzMxNDgyNjJ9.svTVSr9pPPc8IpCy1-AFmb8H3AbcStv8Cqagv_cBj64' \
+-H 'Cookie: refresh_token=ef2ec87c-d616-4e05-bef4-508c1d0ca601' \
+-H 'Content-Length: 147' \
+-d '{"email": "kekeftfup70@gmail.com", "fullName": "Kelly Adams", "password": "hBHuP7R0SzBq%bc4", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:28 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_delete_by_super_adminRESET
+curl -X DELETE 'https://auth.dev-cinescope.coconutqa.ru/user/a84efb56-95cb-4933-b2c0-e214ca35b6e7' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDYyLCJleHAiOjE3NzMxNDgyNjJ9.svTVSr9pPPc8IpCy1-AFmb8H3AbcStv8Cqagv_cBj64' \
+-H 'Cookie: refresh_token=ef2ec87c-d616-4e05-bef4-508c1d0ca601' \
+-H 'Content-Length: 0' \
+
+2026-03-10 17:40:28 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_delete_by_super_adminRESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/user/a84efb56-95cb-4933-b2c0-e214ca35b6e7' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDYyLCJleHAiOjE3NzMxNDgyNjJ9.svTVSr9pPPc8IpCy1-AFmb8H3AbcStv8Cqagv_cBj64' \
+-H 'Cookie: refresh_token=ef2ec87c-d616-4e05-bef4-508c1d0ca601' \

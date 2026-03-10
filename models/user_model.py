@@ -115,3 +115,9 @@ class GetAllUsersResponse(BaseModel):
     count: int
     page: int
     pageSize: int
+
+
+class ErrorCreateResponse(BaseModel):
+    message: str | List[str]
+    error: str | None = None
+    statusCode: int

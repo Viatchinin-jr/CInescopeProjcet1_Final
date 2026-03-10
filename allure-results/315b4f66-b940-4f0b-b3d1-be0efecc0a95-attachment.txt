@@ -1,0 +1,34 @@
+2026-03-10 17:40:24 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthNegative::test_login_unverified_user_403 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:40:25 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthNegative::test_login_unverified_user_403RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/register' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+-H 'Content-Length: 149' \
+-d '{"email": "kekygvn5d6b@gmail.com", "fullName": "Shelia Hicks", "password": "*T7j1YS9P2UIRqu", "passwordRepeat": "*T7j1YS9P2UIRqu", "roles": ["USER"]}' 
+
+2026-03-10 17:40:25 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthNegative::test_login_unverified_user_403RESET
+curl -X PATCH 'https://auth.dev-cinescope.coconutqa.ru/user/bdb426cb-19cb-49a5-85e4-6c3734ba54c8' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDU5LCJleHAiOjE3NzMxNDgyNTl9.tcu-Ey0mTPWP8e3ZayNel9NsCIWvxSs7qq8LMBI40eg' \
+-H 'Cookie: refresh_token=69c2cae4-2a4f-4a1e-a6f1-858cf7d38841' \
+-H 'Content-Length: 19' \
+-d '{"verified": false}' 
+
+2026-03-10 17:40:25 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthNegative::test_login_unverified_user_403RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+-H 'Content-Length: 65' \
+-d '{"email": "kekygvn5d6b@gmail.com", "password": "*T7j1YS9P2UIRqu"}' 
+
+2026-03-10 17:40:25 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED403RESET
+DATA: RED{"message":"Пользователь не подтвержден","error":"Forbidden","statusCode":403}RESET

@@ -1,0 +1,27 @@
+2026-03-10 17:40:07 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_invalid_published_type (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:40:07 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_invalid_published_type (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDQxLCJleHAiOjE3NzMxNDgyNDF9.V-MQihC3EL-axm_Pg7QqowGSMtTY89tAJfwpDRoU2SM' \
+-H 'Cookie: refresh_token=550d93bb-0ea5-4d69-ae1b-4b29ea91d6c5' \
+-H 'Content-Length: 142' \
+-d '{"email": "kekzwp5bg91@gmail.com", "fullName": "Alison Sparks", "password": "hJ4KmcCF3", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:08 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_invalid_published_type (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 59' \
+-d '{"email": "kekzwp5bg91@gmail.com", "password": "hJ4KmcCF3"}'
+2026-03-10 17:40:08 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_invalid_published_typeRESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?published=abc' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5ZGU1MDk3LWI3MWQtNDliZi1iN2EyLTBkMzU0ODc4NTI2OSIsImVtYWlsIjoia2VrendwNWJnOTFAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDQyLCJleHAiOjE3NzMxNDgyNDJ9.iZWqBC16m5pVHy8PcSMHwhusjLwtWBV7UwIVqDVTtmg' \

@@ -1,0 +1,7 @@
+2026-03-10 17:40:23 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthAPI::test_confirm_email_positiveRESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/register' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Cookie: refresh_token=' \
+-H 'Content-Length: 138' \
+-d '{"email": "kekq7aki7sp@gmail.com", "fullName": "James Rodriguez", "password": "^1ad?O5Z", "passwordRepeat": "^1ad?O5Z", "roles": ["USER"]}'

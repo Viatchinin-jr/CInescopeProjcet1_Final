@@ -1,0 +1,21 @@
+2026-03-10 17:39:52 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_patch_by_id (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:39:53 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_patch_by_idRESET
+curl -X POST 'https://api.dev-cinescope.coconutqa.ru//movies' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDI3LCJleHAiOjE3NzMxNDgyMjd9.lT5zreqw-B_mkTX-hXp5u94MpoDzISpX_Z6eJ5Mkk3A' \
+-H 'Content-Length: 160' \
+-d '{"name": "And word", "price": 228, "description": "Peace.", "imageUrl": "https://image.url", "location": "SPB", "published": true, "rating": 74.0, "genreId": 1}' 
+
+2026-03-10 17:39:53 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_patch_by_idRESET
+curl -X PATCH 'https://api.dev-cinescope.coconutqa.ru//movies/17705' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDI3LCJleHAiOjE3NzMxNDgyMjd9.lT5zreqw-B_mkTX-hXp5u94MpoDzISpX_Z6eJ5Mkk3A' \
+-H 'Content-Length: 59' \
+-d '{"name": "Along air", "price": 160, "description": "Book."}'

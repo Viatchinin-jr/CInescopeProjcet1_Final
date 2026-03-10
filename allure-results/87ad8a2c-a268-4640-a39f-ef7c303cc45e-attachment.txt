@@ -1,0 +1,31 @@
+2026-03-10 17:39:54 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[pageSize as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:39:54 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[pageSize as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDI4LCJleHAiOjE3NzMxNDgyMjh9.c_ATUOMHPXkrpG8CF1l3c_Wr1CZt-w5Z9qDd82lfe9Q' \
+-H 'Cookie: refresh_token=f3f6bb95-b02c-4436-b1d0-0ef18ca3b70c' \
+-H 'Content-Length: 145' \
+-d '{"email": "kekzbqwh9qg@gmail.com", "fullName": "Susan Adams", "password": "JZI*9nUi1I8A1i", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:39:54 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[pageSize as string] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 64' \
+-d '{"email": "kekzbqwh9qg@gmail.com", "password": "JZI*9nUi1I8A1i"}'
+2026-03-10 17:39:55 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[pageSize as string]RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?pageSize=abc' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTQ2YmE5LTVhN2YtNGE2MC04YWJhLWE2ZWRjZDg4Y2Q2OSIsImVtYWlsIjoia2VremJxd2g5cWdAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDI5LCJleHAiOjE3NzMxNDgyMjl9.F-x1jIIhkyGbGmd3K7vS9I0qDn_XhD37pM3AtlUBaWk' \
+
+2026-03-10 17:39:55 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["Поле pageSize имеет максимальную величину 20","Поле pageSize имеет минимальную величину 1","Поле pageSize должно быть целым числом","Поле pageSize должно быть числом"],"error":"Bad Request","statusCode":400}RESET

@@ -1,0 +1,28 @@
+2026-03-10 17:40:26 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_get_user_by_locator (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:40:27 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_get_user_by_locatorRESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDYxLCJleHAiOjE3NzMxNDgyNjF9.3ctM6lN1qJpBlcmvHEifTYVp5ewBpjkteXMzsnN1jOc' \
+-H 'Cookie: refresh_token=07662df4-1013-408c-8304-e85a866d2e8f' \
+-H 'Content-Length: 146' \
+-d '{"email": "kekd46ckoor@gmail.com", "fullName": "Eric Alvarez", "password": "GzJlNncttI5Pj9", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:27 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_get_user_by_locatorRESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/user/3d24ba6b-4695-4746-bca4-25b13916217c' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDYxLCJleHAiOjE3NzMxNDgyNjF9.3ctM6lN1qJpBlcmvHEifTYVp5ewBpjkteXMzsnN1jOc' \
+-H 'Cookie: refresh_token=07662df4-1013-408c-8304-e85a866d2e8f' \
+
+2026-03-10 17:40:27 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUser::test_get_user_by_locatorRESET
+curl -X GET 'https://auth.dev-cinescope.coconutqa.ru/user/kekd46ckoor@gmail.com' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDYxLCJleHAiOjE3NzMxNDgyNjF9.3ctM6lN1qJpBlcmvHEifTYVp5ewBpjkteXMzsnN1jOc' \
+-H 'Cookie: refresh_token=07662df4-1013-408c-8304-e85a866d2e8f' \

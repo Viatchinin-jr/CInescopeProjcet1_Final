@@ -1,0 +1,31 @@
+2026-03-10 17:40:01 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[invalid locations value] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:40:01 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[invalid locations value] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDM1LCJleHAiOjE3NzMxNDgyMzV9._Xwnsqhr8viCr9yoldnRAavYHTn5M82U5sAYiqY6B2k' \
+-H 'Cookie: refresh_token=85f91322-c6e2-4ac6-96c2-6d699df5a97c' \
+-H 'Content-Length: 147' \
+-d '{"email": "kekpg8audml@gmail.com", "fullName": "Cynthia Blair", "password": "@mW$Woo7JdRVop", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:02 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[invalid locations value] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 64' \
+-d '{"email": "kekpg8audml@gmail.com", "password": "@mW$Woo7JdRVop"}'
+2026-03-10 17:40:02 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestGetAllMoviesNegative::test_get_all_movies_negative_400[invalid locations value]RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?locations=NYC' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc5MTNlNjU3LWE5OGQtNDBkMi04ZTlhLTNmYjU5NTdlNWM2MSIsImVtYWlsIjoia2VrcGc4YXVkbWxAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDM2LCJleHAiOjE3NzMxNDgyMzZ9.clttuY-8xxowPhkj0-kHdocPBi-0xkAa-Hkj4YLd00M' \
+
+2026-03-10 17:40:02 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["Каждое значение в поле locations должно быть одним из значений: MSK, SPB"],"error":"Bad Request","statusCode":400}RESET

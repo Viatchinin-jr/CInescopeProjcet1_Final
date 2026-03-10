@@ -1,0 +1,27 @@
+2026-03-10 17:39:44 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[SPB 1-1000] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:39:44 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[SPB 1-1000] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDE5LCJleHAiOjE3NzMxNDgyMTl9.A1WOcHA0UgmYHovEG2lIpxkXGUwxCNz5c14OrAVW8Yo' \
+-H 'Cookie: refresh_token=92e03a7a-9450-4084-a2c6-becce01dee9c' \
+-H 'Content-Length: 146' \
+-d '{"email": "kekz1u2j2hm@gmail.com", "fullName": "Megan Alvarado", "password": "8#8s0dNq0Yrq", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:39:45 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[SPB 1-1000] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 62' \
+-d '{"email": "kekz1u2j2hm@gmail.com", "password": "8#8s0dNq0Yrq"}'
+2026-03-10 17:39:45 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[SPB 1-1000]RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?minPrice=1&maxPrice=1000&locations=SPB&genreId=1' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhNTE0YjdhLTQ2NmItNDg3YS05MDNiLWVhMTM1MTg0YTUyYyIsImVtYWlsIjoia2VrejF1MmoyaG1AZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDIwLCJleHAiOjE3NzMxNDgyMjB9.lGj03WVTSmaJDzx4lzrhXGHKjiWH_ycB7aecok-kY3I' \

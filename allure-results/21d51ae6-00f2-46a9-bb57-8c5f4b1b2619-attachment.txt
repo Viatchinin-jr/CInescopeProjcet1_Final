@@ -1,0 +1,27 @@
+2026-03-10 17:39:42 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[MSK 1-1000] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}' 
+
+2026-03-10 17:39:42 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[MSK 1-1000] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDE2LCJleHAiOjE3NzMxNDgyMTZ9.6VUQYV4TLnw2t1_YV4RzFLgmwf2dd6dRJLXZqfTnaOY' \
+-H 'Cookie: refresh_token=213cf21d-caa5-4c2f-82c7-0aeefd1b43d2' \
+-H 'Content-Length: 150' \
+-d '{"email": "kekac6rn986@gmail.com", "fullName": "Shirley Porter", "password": "0WEPTntb%%^bHKYc", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:39:43 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[MSK 1-1000] (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 66' \
+-d '{"email": "kekac6rn986@gmail.com", "password": "0WEPTntb%%^bHKYc"}'
+2026-03-10 17:39:43 [32mINFO[0m GREENpytest tests/api/test_api_movies.py::TestMoviesAPI::test_get_all_movies[MSK 1-1000]RESET
+curl -X GET 'https://api.dev-cinescope.coconutqa.ru//movies?minPrice=1&maxPrice=1000&locations=MSK&genreId=1' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJhYTNiNDA0LTdlMjctNDVhYS1iODg4LTViYzFjODRhY2I0MyIsImVtYWlsIjoia2VrYWM2cm45ODZAZ21haWwuY29tIiwicm9sZXMiOlsiVVNFUiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDE3LCJleHAiOjE3NzMxNDgyMTd9.Gkrf0jFL7OmW6CZJYnQSNZnv19hzY66gWfpKIzGg_4M' \

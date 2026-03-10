@@ -1,0 +1,27 @@
+2026-03-10 17:40:38 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_patch_user_bad_request_400 (setup)RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/login' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Content-Length: 53' \
+-d '{"email": "api1@gmail.com", "password": "asdqwe123Q"}'
+2026-03-10 17:40:39 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_patch_user_bad_request_400RESET
+curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/user' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDczLCJleHAiOjE3NzMxNDgyNzN9.mxELnMWNeIAWMnR3h3hck8l8krIrIf79OcNErZ0KJzE' \
+-H 'Cookie: refresh_token=5d28da1a-f5aa-435e-9027-6f05e777687a' \
+-H 'Content-Length: 141' \
+-d '{"email": "kekeq89fox5@gmail.com", "fullName": "Angela Harris", "password": "u246fozE", "roles": ["USER"], "verified": true, "banned": false}' 
+
+2026-03-10 17:40:39 [32mINFO[0m GREENpytest tests/api/test_user.py::TestUserNegative::test_patch_user_bad_request_400RESET
+curl -X PATCH 'https://auth.dev-cinescope.coconutqa.ru/user/52d760a4-b517-48d5-9a38-d3cf960565f9' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3NmI4YmY5LWFmMTMtNDViYi1iMjAwLWI5ZGI4NmRiMjZkMyIsImVtYWlsIjoiYXBpMUBnbWFpbC5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iLCJTVVBFUl9BRE1JTiJdLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNzczMTQ2NDczLCJleHAiOjE3NzMxNDgyNzN9.mxELnMWNeIAWMnR3h3hck8l8krIrIf79OcNErZ0KJzE' \
+-H 'Cookie: refresh_token=5d28da1a-f5aa-435e-9027-6f05e777687a' \
+-H 'Content-Length: 23' \
+-d '{"roles": ["GOD_MODE"]}' 
+
+2026-03-10 17:40:39 [32mINFO[0m 	RESPONSE:
+STATUS_CODE: RED400RESET
+DATA: RED{"message":["Каждое значение массиве roles должно быть одним из следующих значений: USER, ADMIN, SUPER_ADMIN"],"error":"Bad Request","statusCode":400}RESET

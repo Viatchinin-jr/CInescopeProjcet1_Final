@@ -51,7 +51,7 @@ class CustomRequester:
         :return: Объект ответа requests.Response.
         """
         if isinstance(data, BaseModel):
-            data = json.loads(data.model_dump_json(exclude_unset=True))
+            data = json.loads(data.model_dump_json(exclude_unset=True, by_alias=True))
         response = self.session.request(
             method,
             f"{self.base_url}{endpoint}",

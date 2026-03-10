@@ -1,13 +1,22 @@
 import pytest
 import requests
+import allure
+import time
+
+from pygments.lexers import q
+
 from API.api_manager import ApiManager
 from constants import BASE_URL, REGISTER_ENDPOINT
 from custom_requester.custom_requester import CustomRequester
+from db_requester.db_helpers import DBHelper
+from models.movies_model import MovieCreateRequest
 from resources.user_creds import SuperAdminCreds
+from tests.conftest import db_session
 from utils.data_generator import DataGenerator
 from entities.user import User
 from const.roles import Roles
 from models.user_model import UserTest, RegisteredUser, RegisterUserResponse, CreateUserRequest, PatchUserRequest
+from db_models.db_movies import MoviesDBModel
 
 
 @pytest.fixture
@@ -163,7 +172,27 @@ def movie_payload():
     """
     Генерирует случайный фильм через DataGenerator
     """
-    return DataGenerator.generate_random_movie()
+    random_data = DataGenerator.generate_random_movie()
+    return MovieCreateRequest.model_validate(random_data)
+
+@pytest.fixture
+def movie_cleanup(db_session):
+    """Фикстура для автоматической очистки созданных фильмов из БД"""
+    # 1. Создаем список для ID, которые будет удалять
+    movies_to_delete = []
+
+    # 2. Передаем этот список в тест
+    yield movies_to_delete
+
+    db = DBHelper(db_session=db_session)
+
+    # 3. Teardown: после теста удаляем все, что попало в список
+    for movie_id in movies_to_delete:
+        with allure.step(f"Очистка БД: удаление фильма с ID {movie_id}"):
+            movie_obj = db_session.query(MoviesDBModel).filter_by(id=movie_id).first()
+            if movie_obj:
+                db.delete_movie(movie_obj)
+                db_session.commit()
 
 @pytest.fixture
 def created_movie(api_manager, admin_auth, movie_payload):
@@ -221,3 +250,8 @@ def patch_user_data() -> PatchUserRequest:
         verified=False
     )
 
+
+@pytest.fixture
+def delay_between_retries():
+    time.sleep(2)  # задержка в 2 секунды. это необязательно, но нужно понимать, что такая возможность имеется.
+    yield
