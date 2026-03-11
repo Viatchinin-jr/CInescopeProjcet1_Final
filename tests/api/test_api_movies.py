@@ -1,12 +1,14 @@
 import pytest
 import allure
-from sqlalchemy.sql.coercions import expect
-
-from db_models.db_movies import MoviesDBModel
 from models.movies_model import GetListMoviesParams, GetListMoviesResponse, ErrorResponse, MovieCreateRequest, \
     MovieResponse, MovieDetailResponse
-from datetime import datetime
 
+
+@allure.epic("Сервис Movies")
+@allure.feature("Операции CRUD (Позитивные)")
+@pytest.mark.api
+@pytest.mark.movies
+@pytest.mark.positive
 class TestMoviesAPI:
 
     @pytest.mark.parametrize(
@@ -18,36 +20,36 @@ class TestMoviesAPI:
         ],
         ids=["MSK 1-1000", "SPB 1-1000", "MSK 100-300 (Genre 2)"]
     )
+    @allure.story("Фильтрация списка фильмов")
+    @pytest.mark.smoke
+    @pytest.mark.positive
     @allure.title("Позитивный тест фильтрации списка фильмов")
     def test_get_all_movies(self, common_user, filter_params, check):
         with allure.step(f"Запрос списка фильмов с фильтрами: {filter_params.model_dump(exclude_unset=True)}"):
-            # Наш метод сам поймет, что это модель и сделает model_dump(by_alias=True)
             response = common_user.api.movies_api.get_list_movies(params=filter_params, expected_status=200)
 
         with allure.step("Валидация структуры ответа моделью GetListMoviesParams"):
-            # Проверяем сразу все: и типы данных, и наличие полей, и вложенные объекты (genre)
             data = GetListMoviesResponse.model_validate(response.json())
 
         with allure.step("Проверка работы фильтров на бэкенде"):
-            # Если фильмов нет - это тоже валидный случай для фильтрации, но мы логируем это
             if not data.movies:
                 allure.dynamic.description("Внимание: по заданным фильтрам фильмы не найдены")
                 return
 
             for movie in data.movies:
                 with check:
-                    # 1. Проверка цены (используем значение прямо из нашей модели фильтров)
                     check.greater_equal(movie.price, filter_params.min_price, f"Цена фильма {movie.id} меньше minPrice")
                     check.less_equal(movie.price, filter_params.max_price, f"Цена фильма {movie.id} больше maxPrice")
 
-                    # 2. Проверка локации (фильтр locations - это список, проверяем вхождение)
                     if filter_params.locations:
                         check.is_in(movie.location, filter_params.locations, f"Локация фильма {movie.id} не входит в фильтр")
 
-                    # 3. Проверка жанра
                     if filter_params.genre_id:
                         check.equal(movie.genre_id, filter_params.genre_id, f"Жанр фильма {movie.id} не совпадает")
 
+    @allure.story("Создание фильма")
+    @pytest.mark.smoke
+    @pytest.mark.positive
     @allure.title("Успешное создание фильма администратором")
     def test_create_movie(self, super_admin, movie_payload, movie_cleanup, check):
         with allure.step(f"Запроос POST /movies с данными: {movie_payload.name}"):
@@ -63,14 +65,14 @@ class TestMoviesAPI:
                 check.equal(data.genre_id, movie_payload.genre_id, "ID жанра не совпал")
                 check.is_instance(data.id, int, "ID должен быть числом")
 
-    @pytest.mark.slow
-    @allure.feature("Успешное получение деталей фильма по ID")
+    @allure.story("Детальная информация о фильме")
+    @pytest.mark.smoke
+    @pytest.mark.positive
+    @allure.title("Успешное получение деталей фильма по ID")
     def test_get_by_id(self, super_admin, movie_payload, movie_cleanup, check):
         with allure.step("Подготовка: создание тестового фильма"):
             create_resp = super_admin.api.movies_api.create_movie(movie_payload)
-            # Извлекаем ID из ответа создания
             movie_id = create_resp.json()["id"]
-            # Регистрируем ID в фикстуре для дальнейшего cleanup
             movie_cleanup.append(movie_id)
 
         with allure.step(f"Запрашиваем GET по ID {movie_id}"):
@@ -86,17 +88,17 @@ class TestMoviesAPI:
                 check.is_instance(data.reviews, list, "Поле reviews должно быть списком")
                 check.equal(len(data.reviews), 0, "У нового фильма не должно быть отзывов")
 
-
+    @allure.story("Удаление фильма")
+    @pytest.mark.smoke
+    @pytest.mark.positive
     @allure.title("Успешное удаление фильма по ID")
     def test_delete_by_id_200(self, super_admin, movie_payload, check):
         with allure.step("Подготовка: создание тестового фильма"):
             resp = super_admin.api.movies_api.create_movie(movie_payload, expected_status=201)
-            # Сразу забрали себе ID
             movie_id = resp.json()["id"]
 
         with allure.step(f"Удаление фильма: {movie_id}"):
             del_resp = super_admin.api.movies_api.delete_movie_by_id(movie_id, expected_status=200)
-            # Сразу валидируем ответ моделью
             deleted_data = MovieResponse.model_validate(del_resp.json())
 
         with allure.step("Проверка: в ответе DELETE вернулись данные удаленного фильма"):
@@ -106,7 +108,10 @@ class TestMoviesAPI:
         with allure.step("Повторный GET-запрос по этому ID возвращает 404"):
             get_resp = super_admin.api.movies_api.get_movie_by_id(movie_id, expected_status=404)
 
-    @allure.title("Тест на PATCH (имя и цена")
+    @allure.story("Частичное обновление фильма")
+    @pytest.mark.smoke
+    @pytest.mark.positive
+    @allure.title("Тест на PATCH (имя и цена)")
     def test_patch_by_id(self, super_admin, movie_payload, patch_movie_payload, movie_cleanup, check):
         with allure.step("Подготовка: создание фильма для теста"):
             create_resp = super_admin.api.movies_api.create_movie(movie_payload, expected_status=201)
@@ -118,17 +123,16 @@ class TestMoviesAPI:
             updated_data = MovieResponse.model_validate(patch_resp.json())
 
         with allure.step("Проверка: данные в ответе должны соответсвовать патчу и исходным данным"):
-            # Выгружаем из ответа только ключи, которые были в patch_movie_payload
             actual_data_subset = updated_data.model_dump(
                 include=set(patch_movie_payload.keys()),
                 by_alias=True
             )
-            # Сравниваем два словаря
             check.equal(actual_data_subset, patch_movie_payload, "Данные в ответе не совпадают с патчем")
 
-
-
-@allure.feature("Негативные тесты на GET Movies")
+@allure.epic("Сервис Movies")
+@allure.feature("Обработка ошибок: GET (Negative)")
+@pytest.mark.movies
+@pytest.mark.negative
 class TestGetAllMoviesNegative:
 
     @pytest.mark.parametrize(
@@ -152,10 +156,10 @@ class TestGetAllMoviesNegative:
             "createdAt as number"
         ]
     )
+    @allure.story("Валидация query-параметров")
     @allure.title("Негативный тест фильтрации: ожидаем 400 Bad Request")
     def test_get_all_movies_negative_400(self, common_user, invalid_params, expected_error_field, check):
         with allure.step(f"Запрос списка фильмов с некорректным параметром: {invalid_params}"):
-            # Отправляем словарь напрямую, чтобы обойти валидацию Pydantic на стороне клиента
             response = common_user.api.movies_api.get_list_movies(invalid_params, expected_status=400)
 
         with allure.step("Валидация тела ответа моделью ошибки"):
@@ -164,15 +168,18 @@ class TestGetAllMoviesNegative:
             with check:
                 check.equal(error_data.statusCode, 400, "Код в теле ответа должен быть 400!")
 
+    @allure.story("Валидация поля published")
     @pytest.mark.xfail(reason="Баг? Бэкенд возвращает 200")
     @allure.title("Негативный тест: невалидное поле published (BUG)")
     def test_invalid_published_type(self, common_user):
         response = common_user.api.movies_api.get_list_movies(
-            params={"published": "abc"},  # API ожидает bool, передаем строку
-            expected_status=400  # бэкенд всегда возвращает 200, обойти не удалось
+            params={"published": "abc"},
+            expected_status=400
         )
-
-@allure.feature("Негативные тест на POST")
+@allure.epic("Сервис Movies")
+@allure.feature("Обработка ошибок: POST /movies")
+@pytest.mark.movies
+@pytest.mark.negative
 class TestPostNegative:
     @pytest.mark.parametrize(
         "invalid_data, expected_error_text",
@@ -185,9 +192,9 @@ class TestPostNegative:
         ],
         ids=["empty name", "negative price", "invalid location", "non_existent genre", "invalid imageUrl"]
     )
+    @allure.story("Валидация полей при создании")
     @allure.title("Негативный тест создания фильма: 400 Bad Request")
     def test_create_movie_400(self, super_admin, movie_payload, invalid_data, expected_error_text, check):
-        # Берем валидный payload и подменяем в нем одно поле на невалидное
         payload = movie_payload.model_dump(by_alias=True)
         payload.update(invalid_data)
 
@@ -200,11 +207,12 @@ class TestPostNegative:
                 check.equal(error_data.statusCode, 400)
                 check.is_in(expected_error_text, str(error_data.message), f"Ожидали {expected_error_text} в ответе сервера")
 
+    @allure.story("Проверка уникальности (дубликаты)")
     @allure.title("Негативный тест: создание дубликата фильма (409 Conflict)")
     def test_create_movie_409(self, super_admin, movie_payload, movie_cleanup, check):
         with allure.step(f"Создание первого фильма с именем {movie_payload.name}"):
             response_first = super_admin.api.movies_api.create_movie(movie_payload, expected_status=201)
-            # Сразу сохраняем ID для дальнейшего cleanup
+
             movie_data = MovieResponse.model_validate(response_first.json())
             movie_cleanup.append(movie_data.id)
 
@@ -219,12 +227,14 @@ class TestPostNegative:
                 check.equal(error_data.message, "Фильм с таким названием уже существует")
                 check.equal(error_data.error, "Conflict")
 
-
-@allure.feature("Негативный тест на GET by ID")
+@allure.epic("Сервис Movies")
+@allure.feature("Обработка ошибок: GET /movies/{id}")
+@pytest.mark.movies
+@pytest.mark.negative
 class TestGetByIdNegative:
+    @allure.story("Поиск несуществующего фильма")
     @allure.title("Запрос по ID несуществующего фильма: ожидаем 404")
     def test_get_movie_404(self, super_admin, check):
-        # Генерируем ID, которого заведомо не может быть
         invalid_id = 14888841
 
         with allure.step(f"Запрос GET по ID: {invalid_id}"):
@@ -235,8 +245,13 @@ class TestGetByIdNegative:
             with check:
                 check.equal(error_data.statusCode, 404)
 
-@allure.feature("Негативные тесты на DELETE by ID")
+
+@allure.epic("Сервис Movies")
+@allure.feature("Обработка ошибок: DELETE /movies/{id}")
+@pytest.mark.movies
+@pytest.mark.negative
 class TestDeleteNegative:
+    @allure.story("Повторное удаление")
     @allure.title("Повторное удаление фильма: 404 Not Found")
     def test_delete_by_id_404(self, super_admin, movie_payload, check):
         with allure.step("Подготовка: создание и первое удаление фильма"):
@@ -254,19 +269,23 @@ class TestDeleteNegative:
                 check.equal(error_data.message, "Фильм не найден")
                 check.equal(error_data.error, "Not Found")
 
-    @pytest.mark.xfail(reason="Баг? Возвращает 404 вместо 400 на неверный тип данных.")
+    @allure.story("Валидация формата ID")
     @allure.title("Удаление фильма с некорректным ID: 400 Bad Request")
+    @pytest.mark.xfail(reason="Баг? Возвращает 404 вместо 400 на неверный тип данных.")
     def test_delete_by_invalid_id_400(self, super_admin, check):
-        # Вместо числа передаем строку, которую сервер не сможет обработать
         invalid_id = "abc-123-stack"
 
         with allure.step(f"Запрос DELETE /movies/{invalid_id}"):
             response = super_admin.api.movies_api.delete_movie_by_id(invalid_id, expected_status=400)
 
 
-
+@allure.epic("Сервис Movies")
 @allure.feature("Негативные тесты на PATCH")
+@pytest.mark.movies
+@pytest.mark.negative
 class TestPatchNegative:
+
+    @allure.story("Обновление несуществующего фильма")
     @allure.title("Обновление несуществующего фильма: 404 Not Found")
     def test_patch_movie_404(self, super_admin, patch_movie_payload, check):
         invalid_id = 9991488899
@@ -281,11 +300,11 @@ class TestPatchNegative:
                 check.equal(error_data.message, "Фильм не найден")
                 check.equal(error_data.error, "Not Found")
 
+    @allure.story("Валидация типов данных при PATCH")
     @allure.title("Обновление некорректными данными: 400 Bad Request")
     def test_patch_with_invalid_data_400(self, super_admin, movie_payload, patch_movie_payload, movie_cleanup, check):
         with allure.step("Создаем фильм который будем обновлять"):
             response = super_admin.api.movies_api.create_movie(movie_payload, expected_status=201)
-            # забираем ID
             movie_id = response.json()["id"]
             movie_cleanup.append(movie_id)
 

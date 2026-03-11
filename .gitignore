@@ -12,3 +12,4 @@ venv/*
 *.env
 .env
 README.md
+allure-results/

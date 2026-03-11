@@ -1,6 +1,0 @@
-2026-03-10 17:40:21 [32mINFO[0m GREENpytest tests/api/test_auth.py::TestAuthAPI::test_register_userRESET
-curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/register' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'Content-Length: 116' \
--d '{"email": "kekxrybgdj9@gmail.com", "fullName": "Laura Tucker", "password": "pcPxsZe3", "passwordRepeat": "pcPxsZe3"}'
