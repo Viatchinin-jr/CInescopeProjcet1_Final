@@ -10,5 +10,5 @@ venv/*
 *.env
 .env
 README.md
-allure-result/
+allure-result
 screenshot.png
