@@ -1,3 +1,4 @@
+playwright
 certifi==2025.10.5
 charset-normalizer==3.4.4
 execnet==2.1.1
