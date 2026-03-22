@@ -1,7 +1,12 @@
+import datetime
 import random
 import string
 from faker import Faker
+
+from models.movies_model import MovieCreateRequest
+
 faker = Faker()
+
 
 class DataGenerator:
 
@@ -40,21 +45,27 @@ class DataGenerator:
         return ''.join(password)
 
     @staticmethod
-    def generate_random_movie():
+    def generate_random_movie() -> dict:
         """
         Генерация фильма
-        :return:
         """
-        data = {
+        return {
             "name": faker.sentence(nb_words=2).rstrip("."),
-            "imageUrl": "https://image.url",
             "price": faker.random_int(100, 400),
             "description": faker.text(max_nb_chars=10),
+            "image_url": "https://image.url",
             "location": random.choice(["MSK", "SPB"]),
             "published": True,
-            "genreId": 1
+            "rating": round(random.uniform(0,100), 1),
+            "genre_id": 1,
+            "created_at": datetime.datetime.now()
         }
-        return data
+
+    @staticmethod
+    def generate_random_movie_for_api() -> MovieCreateRequest:
+        data = DataGenerator.generate_random_movie()
+        data.pop("created_at", None)
+        return MovieCreateRequest(**data)
 
     @staticmethod
     def generate_random_patch_data():
@@ -67,3 +78,26 @@ class DataGenerator:
             "description": faker.text(max_nb_chars=10),
         }
         return data
+
+
+    @staticmethod
+    def generate_user_data() -> dict:
+        """Генерирует данные для тестового пользователя, которые можно сразу передать в метод создания юзера через ДБ"""
+        from uuid import uuid4
+
+        return {
+            'id': f"{uuid4()}", # генерируем UUID как строку
+            'email': DataGenerator.generate_random_email(),
+            'full_name': DataGenerator.generate_random_name(),
+            'password': DataGenerator.generate_random_password(),
+            'created_at': datetime.datetime.now(),
+            'updated_at': datetime.datetime.now(),
+            'verified': False,
+            'banned': False,
+            'roles': '{USER}'
+        }
+
+    @staticmethod
+    def generate_random_int(min_value: int = 0, max_value: int = 100) -> int:
+        """Генерирует случайно число в диапазоне от 1 до 100"""
+        return random.randint(min_value, max_value)

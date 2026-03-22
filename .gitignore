@@ -6,9 +6,9 @@ __pycache__/*
 venv/*
 .DS_Store
 *.db
-*.xlsx
-*.log
-*.csv
+*.xlsx*.csv
 *.env
 .env
 README.md
+allure-result
+screenshot.png

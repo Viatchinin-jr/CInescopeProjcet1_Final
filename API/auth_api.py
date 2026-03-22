@@ -5,7 +5,7 @@ from custom_requester.custom_requester import CustomRequester
 import requests
 from typing import Iterable
 
-from models.auth_model import LoginRequest, LoginResponse
+from models.auth_model import LoginRequest, LoginResponse, RegisterUserRequest
 from models.user_model import UserTest
 
 class AuthAPI(CustomRequester):
@@ -21,11 +21,11 @@ class AuthAPI(CustomRequester):
         """
         super().__init__(session=session, base_url=session.base_url)
 
-    def register_user(self, user_data: UserTest, expected_status: int = 201) -> requests.Response:
+    def register_user(self, user_data: RegisterUserRequest, expected_status: int = 201) -> requests.Response:
         """
         Регистрирует нового пользователя.
 
-        :param user_data: данные пользователя в формате словаря.
+        :param user_data: модель данных пользователя RegisterUserRequest.
         :param expected_status: ожидаемый HTTP-код ответа, по умолчанию 201.
         :return: объект requests.Response.
         """
@@ -68,6 +68,18 @@ class AuthAPI(CustomRequester):
         self._update_session_headers(Authorization=f"Bearer {token}")
         return token
 
+    def logout(self, expected_status: int | Iterable[int] = 200) -> requests.Response:
+        """
+        Выход из учетной записи и удаление refresh_token пользователя.
+        """
+        return self.send_request(
+            method="GET",
+            endpoint=LOGOUT_ENDPOINT,
+            expected_status=expected_status
+        )
+
+
+
     def refresh_token(self, expected_status: int | Iterable[int] = (200, 201)) -> requests.Response:
         """
         Обновление refreshToken и accessToken пользователя
@@ -78,12 +90,14 @@ class AuthAPI(CustomRequester):
             expected_status=expected_status
         )
 
-    def logout(self, expected_status: int | Iterable[int] = 200) -> requests.Response:
+    def confirm_email(self, token: str, expected_status: int = 200) -> requests.Response:
         """
-        Выход из учетной записи и удаление refresh_token пользователя.
+        Подтверждение email пользователя.
+        :param token: уникальный токен из письма или БД.
+        :param expected_status: ожидаемый код ответа (200 или 400)
         """
         return self.send_request(
             method="GET",
-            endpoint=LOGOUT_ENDPOINT,
+            endpoint=f"/confirm/{token}",
             expected_status=expected_status
         )

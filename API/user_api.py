@@ -24,7 +24,7 @@ class UserAPI(CustomRequester):
         """
         Удаляет пользователя по его идентификатору.
 
-        :param user_id: ID пользователя.
+        :param user_id: ID пользователя (UUID string).
         :param expected_status: Ожидаемый HTTP-код ответа.
         :return: объект requests.Response.
         """

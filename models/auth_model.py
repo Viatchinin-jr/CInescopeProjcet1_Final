@@ -3,6 +3,11 @@ from const.roles import Roles
 from typing import List, Optional
 
 
+class RegisterUserRequest(BaseModel):
+    email: EmailStr
+    fullName: str
+    password: str
+    passwordRepeat: str
 
 
 class LoginRequest(BaseModel):
@@ -30,3 +35,9 @@ class RefreshTokenResponse(BaseModel):
 
 class LogoutResponse(BaseModel):
     message: Optional[str] = None
+
+
+class ErrorRegisterResponse(BaseModel):
+    message: str | List[str]
+    error: str
+    statusCode: int
