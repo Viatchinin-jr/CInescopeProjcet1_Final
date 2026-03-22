@@ -1,6 +1,0 @@
-2026-03-22 12:02:20 [32mINFO[0m GREENpytest tests/ui/test_review.py::TestMovieReview::test_send_review[chromium] (setup)RESET
-curl -X POST 'https://auth.dev-cinescope.coconutqa.ru/register' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
--H 'Content-Length: 135' \
--d '{"email": "kekvewyuxbi@gmail.com", "fullName": "Victor Glenn", "password": "5k9RScaP", "passwordRepeat": "5k9RScaP", "roles": ["USER"]}'
